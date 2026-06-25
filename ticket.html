@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Ticket - EventBook</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .ticket-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .ticket-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .ticket-header h1 {
+            margin: 0 0 0.5rem 0;
+        }
+
+        .ticket-body {
+            padding: 2rem;
+        }
+
+        .ticket-success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .ticket-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .ticket-detail-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .ticket-detail-section h3 {
+            margin-top: 0;
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .ticket-detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .ticket-detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .ticket-detail-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .ticket-detail-value {
+            color: #333;
+            text-align: right;
+        }
+
+        .ticket-qr {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #667eea;
+        }
+
+        .ticket-qr h4 {
+            margin: 0 0 1rem 0;
+            color: #667eea;
+        }
+
+        #qrCode {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .ticket-booking-id {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .ticket-booking-id h2 {
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .ticket-booking-id p {
+            margin: 0;
+            font-size: 1.8rem;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .ticket-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #eee;
+        }
+
+        .ticket-button {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .ticket-button.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .ticket-button.primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .ticket-button.secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .ticket-button.secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .ticket-footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .ticket-details {
+                grid-template-columns: 1fr;
+            }
+
+            .ticket-actions {
+                flex-direction: column;
+            }
+
+            .ticket-detail-item {
+                flex-direction: column;
+            }
+
+            .ticket-detail-value {
+                text-align: left;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">🎟️ EventBook</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Ticket Section -->
+    <section class="events-section">
+        <div class="ticket-container">
+            <!-- Header -->
+            <div class="ticket-header">
+                <h1>✅ Booking Confirmed!</h1>
+                <p>Your tickets are ready. Download and save them.</p>
+            </div>
+
+            <!-- Body -->
+            <div class="ticket-body">
+                <!-- Success Message -->
+                <div class="ticket-success">
+                    <strong>🎉 Thank you for your booking!</strong> Your tickets have been successfully reserved.
+                </div>
+
+                <!-- Booking ID -->
+                <div class="ticket-booking-id">
+                    <h2>Your Booking ID</h2>
+                    <p id="ticketBookingId">LOADING...</p>
+                </div>
+
+                <!-- Ticket Details -->
+                <div class="ticket-details">
+                    <!-- Left: Event Details -->
+                    <div class="ticket-detail-section">
+                        <h3>📅 Event Details</h3>
+                        <div class="ticket-detail-item">
+                            <span class="ticket-detail-label">Event:</span>
+                            <span class="ticket-detail-value" id="ticketEventName">Loading...</span>
+                        </div>
+                        <div class="ticket-detail-item">
+                            <span class="ticket-detail-label">Date:</span>
+                            <span class="ticket-detail-value" id="ticketEventDate">Loading...</span>
+                        </div>
+                        <div class="ticket-detail-item">
+                            <span class="ticket-detail-label">Time:</span>
+                            <span class="ticket-detail-value" id="ticketEventTime">Loading...</span>
+                        </div>
+                        <div class="ticket-detail-item">
+                            <span class="ticket-detail-label">Location:</span>
+                            <span class="ticket-detail-value" id="ticketEventLocation">Loading...</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Booking Details -->
+                    <div class="ticket-detail-section">
+                        <h3>🎫 Booking Details</h3>
+                        <div class="ticket-detail-item">
+                            <span class="ticket-detail-label">Tickets:</span>
+                            <span class="ticket-detail-value" id="ticketQuantity">Loading...</span>
+                        </div>
+                        <div class="ticket-detail-item">
+                            <span class="ticket-detail-label">Price/Ticket:</span>
+                            <span class="ticket-detail-value" id="ticketPrice">Loading...</span>
+                        </div>
+                        <div class="ticket-detail-item">
+                            <span class="ticket-detail-label">Total Price:</span>
+                            <span class="ticket-detail-value" id="ticketTotalPrice" style="font-size: 1.2rem; color: #667eea; font-weight: bold;">Loading...</span>
+                        </div>
+                        <div class="ticket-detail-item">
+                            <span class="ticket-detail-label">Booked On:</span>
+                            <span class="ticket-detail-value" id="ticketBookingDate">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QR Code -->
+                <div class="ticket-qr">
+                    <h4>📱 Scan QR Code at Entrance</h4>
+                    <div id="qrCode"></div>
+                    <p style="color: #666; margin-top: 1rem; font-size: 0.9rem;">
+                        Show this QR code at the event entrance
+                    </p>
+                </div>
+
+                <!-- Actions -->
+                <div class="ticket-actions">
+                    <button class="ticket-button primary" onclick="downloadTicketPDF()">
+                        📥 Download PDF Ticket
+                    </button>
+                    <button class="ticket-button secondary" onclick="shareTicket()">
+                        📤 Share Ticket
+                    </button>
+                    <button class="ticket-button secondary" onclick="window.location.href='index.html'">
+                        🏠 Back to Home
+                    </button>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="ticket-footer">
+                <p>📧 A confirmation email has been sent to your registered email address.</p>
+                <p>❓ Need help? Contact us at support@eventbook.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 EventBook. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- PDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <script src="js/script.js"></script>
+    <script src="js/ticket-script.js"></script>
+</body>
+</html>

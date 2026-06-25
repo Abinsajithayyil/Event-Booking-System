@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details - EventBook</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .event-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .event-detail-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .event-details {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .event-details p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .event-detail-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">🎟️ EventBook</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html" class="btn-nav">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Event Detail -->
+    <section class="events-section">
+        <div class="container">
+            <a href="index.html" style="text-decoration: none; color: #667eea; margin-bottom: 1rem; display: inline-block; font-size: 1.1rem;">← Back to Events</a>
+            
+            <div id="eventDetailContainer">
+                <p style="text-align: center; color: #666; padding: 2rem;">Loading event details...</p>
+            </div>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">🎫 Book Your Tickets</h3>
+            <div class="form-container" style="margin-top: 1rem; max-width: 500px;">
+                <div id="message"></div>
+                <form id="bookingForm"></form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 EventBook. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // This will run AFTER script.js loads
+        console.log('event-detail.html loaded');
+        console.log('About to call loadEventDetail');
+        
+        // Call the function immediately
+        setTimeout(function() {
+            console.log('Calling loadEventDetail after timeout');
+            loadEventDetail();
+        }, 100);
+    </script>
+</body>
+</html>

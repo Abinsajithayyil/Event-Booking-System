@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bookings - EventBook Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">🎟️ EventBook Admin</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin.html">Dashboard</a></li>
+                <li><a href="admin-events.html">Manage Events</a></li>
+                <li><a href="admin-bookings.html" class="active">View Bookings</a></li>
+                <li><a href="#" onclick="adminLogout()" class="btn-nav">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- View Bookings -->
+    <section class="admin-section">
+        <div class="container">
+            <h1>📋 All Bookings</h1>
+
+            <!-- Filter Options -->
+            <div class="filter-section">
+                <input type="text" id="searchBooking" placeholder="Search by booking ID or email..." class="search-input">
+                <select id="statusFilter" class="filter-select">
+                    <option value="">All Status</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="pending">Pending</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+
+            <!-- Bookings Table -->
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>User Email</th>
+                        <th>Event</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="bookingsTable">
+                    <tr>
+                        <td colspan="8" style="text-align: center;">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 EventBook. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/admin-script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAdminBookings();
+            
+            document.getElementById('searchBooking').addEventListener('keyup', function() {
+                filterBookings();
+            });
+            
+            document.getElementById('statusFilter').addEventListener('change', function() {
+                filterBookings();
+            });
+        });
+    </script>
+</body>
+</html>

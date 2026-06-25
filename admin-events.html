@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Events - EventBook Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">🎟️ EventBook Admin</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin.html">Dashboard</a></li>
+                <li><a href="admin-events.html" class="active">Manage Events</a></li>
+                <li><a href="admin-bookings.html">View Bookings</a></li>
+                <li><a href="#" onclick="adminLogout()" class="btn-nav">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Manage Events -->
+    <section class="admin-section">
+        <div class="container">
+            <h1>📅 Manage Events</h1>
+            <div id="message"></div>
+
+            <!-- Add New Event Form -->
+            <div class="admin-form-section">
+                <h2>Add New Event</h2>
+                <form id="addEventForm" class="admin-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventTitle">Event Title</label>
+                            <input type="text" id="eventTitle" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventPrice">Price ($)</label>
+                            <input type="number" id="eventPrice" name="price" step="0.01" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventDate">Date</label>
+                            <input type="date" id="eventDate" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventTime">Time</label>
+                            <input type="time" id="eventTime" name="time" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventLocation">Location</label>
+                            <input type="text" id="eventLocation" name="location" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventTickets">Total Tickets</label>
+                            <input type="number" id="eventTickets" name="totalTickets" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventDescription">Description</label>
+                        <textarea id="eventDescription" name="description" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventImage">Image URL</label>
+                        <input type="url" id="eventImage" name="image" placeholder="https://via.placeholder.com/...">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add Event</button>
+                </form>
+            </div>
+
+            <!-- Events List -->
+            <div class="admin-list-section">
+                <h2>All Events</h2>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Date</th>
+                            <th>Price</th>
+                            <th>Total Tickets</th>
+                            <th>Available</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="eventsTable">
+                        <tr>
+                            <td colspan="6" style="text-align: center;">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 EventBook. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/admin-script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAdminEvents();
+            document.getElementById('addEventForm').addEventListener('submit', handleAddEvent);
+        });
+    </script>
+</body>
+</html>

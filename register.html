@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - EventBook</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .register-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .register-header h1 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .register-header p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">🎟️ EventBook</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html" class="btn-nav">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Register Form -->
+    <div class="form-container">
+        <div class="register-header">
+            <h1>Create Your Account</h1>
+            <p>Join EventBook and start booking events today!</p>
+        </div>
+        <div id="message"></div>
+        
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="name">👤 Full Name</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+
+                       <div class="form-group password-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="At least 6 characters" required>
+                <button type="button" class="password-toggle" onclick="togglePassword()">👁️</button>
+            </div>
+
+            <div class="form-group password-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repeat your password" required>
+                <button type="button" class="password-toggle" onclick="togglePassword()">👁️</button>
+            </div>
+            <button type="submit" class="btn form-btn">Create Account</button>
+        </form>
+
+        <div class="form-link">
+            Already have an account? <a href="login.html">Login here</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 EventBook. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            confirmPasswordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+            confirmPasswordInput.type = 'password';
+        }
+    }
+</script>
+</body>
+</html>

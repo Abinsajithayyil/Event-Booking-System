@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - EventBook</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">🎟️ EventBook Admin</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin.html" class="active">Dashboard</a></li>
+                <li><a href="admin-events.html">Manage Events</a></li>
+                <li><a href="admin-bookings.html">View Bookings</a></li>
+                <li><a href="#" onclick="adminLogout()" class="btn-nav">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard -->
+    <section class="admin-section">
+        <div class="container">
+            <h1>📊 Admin Dashboard</h1>
+            <div id="message"></div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Events</h3>
+                    <p class="stat-number" id="totalEvents">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Bookings</h3>
+                    <p class="stat-number" id="totalBookings">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Revenue</h3>
+                    <p class="stat-number" id="totalRevenue">$0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Users</h3>
+                    <p class="stat-number" id="totalUsers">0</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2>Quick Actions</h2>
+                <a href="admin-events.html" class="btn btn-primary">➕ Add New Event</a>
+                <a href="admin-bookings.html" class="btn btn-secondary">📋 View All Bookings</a>
+            </div>
+
+            <!-- Recent Bookings -->
+            <div class="recent-section">
+                <h2>Recent Bookings</h2>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>User</th>
+                            <th>Event</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentBookingsTable">
+                        <tr>
+                            <td colspan="7" style="text-align: center;">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 EventBook. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/admin-script.js"></script>
+    <script>
+        // Load admin dashboard
+        document.addEventListener('DOMContentLoaded', loadAdminDashboard);
+    </script>
+</body>
+</html>
